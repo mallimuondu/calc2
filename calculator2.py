@@ -1,5 +1,7 @@
+import re
 # difine my function
 def calculator():
+     
     operations = input('''
     pleas type in the math oppeeration you will like to complite
     + for additon
@@ -7,34 +9,48 @@ def calculator():
     * for multiplication
     / for division
     ''')
-    #ask user for imput
-    number1 = int( input("enter your first number: "))
-    number2 = int( input("enter your second number: "))
+    
+    if not re.match("^[+,-,*,/]*$", operations):
+        print("Error! You have put the wrong input")
+        calculator()
+          
+    elif operations == "":
+        print("Please select one of the above ")
+        calculator()
 
-    #Adding operations
 
-    #addition
+        #ask user for imput
+    number1 = input("enter your first number: ")
+    number2 = input("enter your second number: ")
+    
+    if not re.match("^[0 - 9]*$",number1):
+        print("please input a number")
+        calculator()
+        #Adding operations
+
+        #addition
     if operations == '+':
-        print("{} + {} = ".format(number1,number2))
-        print(number1 + number2)
+            print("{} + {} = ".format(number1,number2))
+            print(number1 + number2)
 
-    #subtraction
+        #subtraction
     elif operations == '-':
-        print("{} - {} = ".format(number1,number2))
-        print(number1 - number2)
+            print("{} - {} = ".format(number1,number2))
+            print(number1 - number2)
 
-    #multiplicaton
+        #multiplicaton
     elif operations == '*':
-        print("{} * {} = ".format(number1,number2))
-        print(number1 * number2)
+            print("{} * {} = ".format(number1,number2))
+            print(number1 * number2)
 
-    #divide
+        #divide
     elif operations == '/':
-        print("{} / {} = ".format(number1,number2))
-        print(number1 / number2)
-        print("you have not typed a value operator,please run the progrum again")
-        
-calculator()
+            print("{} / {} = ".format(number1,number2))
+            print(number1 / number2)
+
+    else:
+             print("you have not typed a value operator,please run the progrum again")
+calculator()        
 #define function to ask user if they want to use the calculator again
 
 def again():
@@ -47,9 +63,9 @@ def again():
     
     if calc.upper()=="Y" :
         calculator()
-    elif calc.upper:
+    elif calc.upper()=="N":
         print("see you later")
     else:
-        operations()
+        again()
+        
 again()
-   
